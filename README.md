@@ -1,70 +1,53 @@
-# Getting Started with Create React App
+# Project Overview
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Neo-Karir adalah aplikasi game edukasi interaktif yang dirancang untuk memenuhi Capaian Pembelajaran (CP) mata pelajaran Koding dan Kecerdasan Artifisial. Game ini mengajarkan siswa tentang etika AI, pemrosesan basis data, dan berpikir komputasional melalui simulasi menjadi seorang "AI Auditor" di sebuah perusahaan rekrutmen.
 
-## Available Scripts
+## Technical Constraints (MANDATORY)
 
-In the project directory, you can run:
+- Target Platform: HTML5 & APK (via Capacitor).
+- Target Display: Interactive Flat Panel (IFP).
+- Resolution: Fixed 1280 x 720 px (Landscape).
+- UI/UX: High-touch area (min 48px), dark mode (Cyberpunk/Futuristic theme), no hover dependency (for touch screens).
+- Framework: React.js + Tailwind CSS.
+- Assets: Assets will be provided as static images/SVGs in src/assets.
 
-### `npm start`
+## Core Features & Logic
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Aplikasi ini terdiri dari 3 Level Utama dan 1 Evaluasi Akhir:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Level 1: Database Cleaner (SQL Logic)
 
-### `npm test`
+Objective: Cleaning biased/messy data using logic.
+Mechanism: Drag-and-drop code blocks to form a valid SQL query (e.g., SELECT \* FROM candidates WHERE skills = 'coding').
+Educational Goal: Database concepts & Computational Thinking (Abstraction).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Level 2: Fairness Slider (AI Bias Audit)
 
-### `npm run build`
+Objective: Balancing AI model weight to eliminate gender/regional bias.
+Mechanism: Sliders to adjust "Weightage" of different parameters (Skills vs Gender vs Location). Real-time chart updates to show impact on fairness.
+Educational Goal: AI Ethics & Social Impact.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Level 3: Security Toggle (Data Privacy)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Objective: Implementing data masking for sensitive information.
+Mechanism: Toggle switches to mask/encrypt NIK, Address, and Phone Numbers in a data table.
+Educational Goal: Data Security & Responsibility.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Evaluation & Certification
 
-### `npm run eject`
+Quiz: 10 multiple-choice questions with scenario-based logic.
+Certificate: Generate a PDF certificate using jsPDF upon completion (score based on Game Performance + Quiz Score).
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Instructions for AI Assistant
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Code Style: Modular components, clean state management (React Hooks), and Tailwind-first styling.
+State Management: Track progress from Level 1 to 3 and store quiz results for the final certificate.
+Navigation: Sequential navigation (Level 1 -> 2 -> 3 -> Quiz -> Certificate).
+Responsiveness: Focus only on 1280x720 aspect ratio. Use container with fixed dimensions and margin: auto.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## File Structure
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+src/components/: Reusable UI elements (Button, Card, Modal).
+src/levels/: Logic and UI for each of the 3 levels.
+src/context/: Game state context (User name, scores, level progress).
+src/utils/: Certificate generator and helper functions.
