@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-  const [showIntro, setShowIntro] = useState(true);
+  const [showIntro, setShowIntro] = useState(false);
 
   if (showIntro) {
     return (
@@ -50,8 +50,44 @@ function App() {
           height: "720px",
           position: "relative",
           overflow: "hidden",
+          padding: "56px 72px",
+          boxSizing: "border-box",
         }}
-      ></div>
+      >
+        <nav
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            gap: "96px",
+            fontWeight: "bold",
+          }}
+        >
+          <a
+            href="#tujuan"
+            style={{ color: "white", fontSize: "30px", textDecoration: "none" }}
+          >
+            Tujuan
+          </a>
+          <a
+            href="#profil"
+            style={{ color: "white", fontSize: "30px", textDecoration: "none" }}
+          >
+            Profil
+          </a>
+          <a
+            href="#panduan"
+            style={{ color: "white", fontSize: "30px", textDecoration: "none" }}
+          >
+            Panduan
+          </a>
+          <a
+            href="#daftar-pustaka"
+            style={{ color: "white", fontSize: "30px", textDecoration: "none" }}
+          >
+            Daftar Pustaka
+          </a>
+        </nav>
+      </div>
     </div>
   );
 }
