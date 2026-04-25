@@ -50,8 +50,23 @@ function App() {
           height: "720px",
           position: "relative",
           overflow: "hidden",
+          padding: "56px 72px",
+          boxSizing: "border-box",
         }}
-      ></div>
+      >
+        <nav
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            gap: "24px",
+          }}
+        >
+          <a href="#tujuan" style={{ color: "white", fontSize: "22px", textDecoration: "none" }}>Tujuan</a>
+          <a href="#profil" style={{ color: "white", fontSize: "22px", textDecoration: "none" }}>Profil</a>
+          <a href="#panduan" style={{ color: "white", fontSize: "22px", textDecoration: "none" }}>Panduan</a>
+          <a href="#daftar-pustaka" style={{ color: "white", fontSize: "22px", textDecoration: "none" }}>Daftar Pustaka</a>
+        </nav>
+      </div>
     </div>
   );
 }
