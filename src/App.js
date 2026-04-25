@@ -30,16 +30,27 @@ function App() {
   }
 
   return (
-    <div
-      className="App"
-      style={{
-        backgroundImage: "url('/images/background-home.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        width: "100vw",
-        height: "100vh"
-      }}
-    >
+    <div style={{
+      width: "100vw",
+      height: "100vh",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: "#000"
+    }}>
+      <div
+        className="App"
+        style={{
+          backgroundImage: "url('/images/background-home.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          width: "1280px",
+          height: "720px",
+          position: "relative",
+          overflow: "hidden"
+        }}
+      >
+      </div>
     </div>
   );
 }
