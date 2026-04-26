@@ -3,6 +3,7 @@ import "./App.css";
 
 function App() {
   const [showIntro, setShowIntro] = useState(false);
+  const [activeModal, setActiveModal] = useState(null);
 
   if (showIntro) {
     return (
@@ -64,30 +65,90 @@ function App() {
         >
           <a
             href="#tujuan"
-            style={{ color: "white", fontSize: "30px", textDecoration: "none" }}
+            onClick={(e) => { e.preventDefault(); setActiveModal("Tujuan"); }}
+            style={{ color: "white", fontSize: "30px", textDecoration: "none", cursor: "pointer" }}
           >
             Tujuan
           </a>
           <a
             href="#profil"
-            style={{ color: "white", fontSize: "30px", textDecoration: "none" }}
+            onClick={(e) => { e.preventDefault(); setActiveModal("Profil"); }}
+            style={{ color: "white", fontSize: "30px", textDecoration: "none", cursor: "pointer" }}
           >
             Profil
           </a>
           <a
             href="#panduan"
-            style={{ color: "white", fontSize: "30px", textDecoration: "none" }}
+            onClick={(e) => { e.preventDefault(); setActiveModal("Panduan"); }}
+            style={{ color: "white", fontSize: "30px", textDecoration: "none", cursor: "pointer" }}
           >
             Panduan
           </a>
           <a
             href="#daftar-pustaka"
-            style={{ color: "white", fontSize: "30px", textDecoration: "none" }}
+            onClick={(e) => { e.preventDefault(); setActiveModal("Daftar Pustaka"); }}
+            style={{ color: "white", fontSize: "30px", textDecoration: "none", cursor: "pointer" }}
           >
             Daftar Pustaka
           </a>
         </nav>
       </div>
+
+      {activeModal && (
+        <div
+          onClick={() => setActiveModal(null)}
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 1000,
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              backgroundColor: "white",
+              padding: "40px",
+              borderRadius: "10px",
+              width: "50%",
+              minWidth: "300px",
+              maxWidth: "600px",
+              position: "relative",
+              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <button
+              onClick={() => setActiveModal(null)}
+              style={{
+                position: "absolute",
+                top: "15px",
+                right: "15px",
+                background: "transparent",
+                border: "none",
+                fontSize: "20px",
+                cursor: "pointer",
+                fontWeight: "bold",
+              }}
+            >
+              X
+            </button>
+            <h2 style={{ marginTop: 0 }}>{activeModal}</h2>
+            {activeModal === "Tujuan" ? (
+              <p style={{ textAlign: "justify" }}>
+                Elemen Literasi dan Etika Kecerdasan Artifisial, Pada akhir Fase F, murid mampu memahami prinsip kerja teknologi kecerdasan artifisial secara tepat guna dan bertanggungjawab di dunia kerja dan masyarakat dengan memperhatikan aspek etika, keamanan data dan dampak sosial penggunaannya.
+              </p>
+            ) : (
+              <p>Konten untuk {activeModal} akan ditampilkan di sini.</p>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
