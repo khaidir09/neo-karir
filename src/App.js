@@ -139,7 +139,13 @@ function App() {
               X
             </button>
             <h2 style={{ marginTop: 0 }}>{activeModal}</h2>
-            <p>Konten untuk {activeModal} akan ditampilkan di sini.</p>
+            {activeModal === "Tujuan" ? (
+              <p style={{ textAlign: "justify" }}>
+                Elemen Literasi dan Etika Kecerdasan Artifisial, Pada akhir Fase F, murid mampu memahami prinsip kerja teknologi kecerdasan artifisial secara tepat guna dan bertanggungjawab di dunia kerja dan masyarakat dengan memperhatikan aspek etika, keamanan data dan dampak sosial penggunaannya.
+              </p>
+            ) : (
+              <p>Konten untuk {activeModal} akan ditampilkan di sini.</p>
+            )}
           </div>
         </div>
       )}
