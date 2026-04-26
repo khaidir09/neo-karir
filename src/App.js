@@ -124,6 +124,26 @@ function App() {
             Daftar Pustaka
           </a>
         </nav>
+
+        <button
+          style={{
+            position: "absolute",
+            right: "256px",
+            bottom: "220px",
+            padding: "16px 32px",
+            fontSize: "24px",
+            fontWeight: "bold",
+            color: "white",
+            backgroundColor: "#007bff",
+            border: "none",
+            borderRadius: "8px",
+            cursor: "pointer",
+            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+          }}
+          onClick={() => setShowIntro(true)}
+        >
+          Mulai
+        </button>
       </div>
 
       {activeModal && (
