@@ -1,8 +1,8 @@
 import { render, screen, act } from '@testing-library/react';
 import App from './App';
 
-test('renders video intro first', () => {
+test('renders main content correctly', () => {
   render(<App />);
-  const videoElement = document.querySelector('video');
-  expect(videoElement).toBeInTheDocument();
+  const navElement = screen.getByText(/Tujuan/i);
+  expect(navElement).toBeInTheDocument();
 });

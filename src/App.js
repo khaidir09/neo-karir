@@ -1,9 +1,18 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./App.css";
 
 function App() {
   const [showIntro, setShowIntro] = useState(false);
   const [activeModal, setActiveModal] = useState(null);
+  const [volume, setVolume] = useState(0.5);
+  const [showVolumeSlider, setShowVolumeSlider] = useState(false);
+  const audioRef = useRef(null);
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = volume;
+    }
+  }, [volume]);
 
   if (showIntro) {
     return (
@@ -31,6 +40,8 @@ function App() {
   }
 
   return (
+    <>
+      <audio ref={audioRef} src="/backsound.mp3" autoPlay loop />
     <div
       style={{
         width: "100vw",
@@ -61,6 +72,7 @@ function App() {
             justifyContent: "flex-end",
             gap: "96px",
             fontWeight: "bold",
+            alignItems: "center",
           }}
         >
           <a
@@ -123,6 +135,39 @@ function App() {
           >
             Daftar Pustaka
           </a>
+          <div style={{ position: "relative", display: "flex", alignItems: "center" }}>
+            <button
+              onClick={() => setShowVolumeSlider(!showVolumeSlider)}
+              style={{
+                background: "transparent",
+                border: "none",
+                color: "white",
+                fontSize: "30px",
+                cursor: "pointer",
+                padding: 0,
+              }}
+              title="Atur Volume"
+            >
+              &#127925;
+            </button>
+            {showVolumeSlider && (
+              <input
+                type="range"
+                min="0"
+                max="1"
+                step="0.01"
+                value={volume}
+                onChange={(e) => setVolume(parseFloat(e.target.value))}
+                style={{
+                  position: "absolute",
+                  top: "100%",
+                  right: 0,
+                  marginTop: "10px",
+                  cursor: "pointer",
+                }}
+              />
+            )}
+          </div>
         </nav>
       </div>
 
@@ -205,6 +250,7 @@ function App() {
         </div>
       )}
     </div>
+    </>
   );
 }
 
