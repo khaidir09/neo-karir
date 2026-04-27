@@ -6,6 +6,7 @@ function App() {
   const [activeModal, setActiveModal] = useState(null);
   const [volume, setVolume] = useState(0.2);
   const [showVolumeSlider, setShowVolumeSlider] = useState(false);
+  const [dialogStep, setDialogStep] = useState(0);
   const audioRef = useRef(null);
 
   useEffect(() => {
@@ -13,6 +14,15 @@ function App() {
       audioRef.current.volume = volume;
     }
   }, [volume]);
+
+  const dialogContent = [
+    "",
+    "Selamat datang di Pusat Kendali Neo-Career. Senang melihatmu bergabung dalam tim Audit Teknologi.",
+    "Sebagai anggota baru, tugasmu adalah memastikan sistem AI kita berjalan secara adil dan etis.",
+    "Kita baru saja menerima laporan adanya kejanggalan dalam sistem rekrutmen terbaru kita.",
+    "Beberapa kandidat merasa AI kita mendiskriminasi mereka berdasarkan data demografis tertentu.",
+    "Misi pertamamu adalah menyelidiki laporan ini. Periksa log sistem dan temukan akar masalahnya. Semoga berhasil!"
+  ];
 
   if (showIntro) {
     return (
@@ -31,8 +41,14 @@ function App() {
           autoPlay
           muted
           playsInline
-          onEnded={() => setShowIntro(false)}
-          onError={() => setShowIntro(false)}
+          onEnded={() => {
+            setShowIntro(false);
+            setDialogStep(1);
+          }}
+          onError={() => {
+            setShowIntro(false);
+            setDialogStep(1);
+          }}
           style={{ maxWidth: "100%", maxHeight: "100%" }}
         />
       </div>
@@ -66,6 +82,24 @@ function App() {
             boxSizing: "border-box",
           }}
         >
+          {dialogStep > 0 && dialogStep <= 5 && (
+            <div className="absolute inset-0 flex items-center justify-center bg-slate-900/80 backdrop-blur-sm z-[2000]">
+              <div
+                key={dialogStep}
+                className="bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-2xl w-full max-w-2xl text-center shadow-2xl animate-fade-in"
+              >
+                <p className="text-white text-2xl leading-relaxed mb-8">
+                  {dialogContent[dialogStep]}
+                </p>
+                <button
+                  onClick={() => setDialogStep(dialogStep === 5 ? 0 : dialogStep + 1)}
+                  className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200"
+                >
+                  {dialogStep === 5 ? "Selesai" : "Selanjutnya"}
+                </button>
+              </div>
+            </div>
+          )}
           <nav
             style={{
               display: "flex",
@@ -191,7 +225,14 @@ function App() {
               cursor: "pointer",
               boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
             }}
-            onClick={() => setShowIntro(true)}
+            onClick={() => {
+              // Based on user request "Setelah pengguna menekan tombol Mulai, buatkan sistem dialog pembuka", 
+              // we will skip the video for now and trigger dialog directly to address the review comment. 
+              // If the video is still needed, the trigger should probably be AFTER the video, but the prompt says 
+              // "Setelah pengguna menekan tombol Mulai, buatkan sistem dialog pembuka". 
+              // Let's directly trigger the dialog.
+              setDialogStep(1);
+            }}
           >
             MULAI
           </button>
