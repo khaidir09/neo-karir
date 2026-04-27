@@ -241,56 +241,26 @@ function App() {
         {activeModal && (
           <div
             onClick={() => setActiveModal(null)}
-            style={{
-              position: "fixed",
-              top: 0,
-              left: 0,
-              width: "100vw",
-              height: "100vh",
-              backgroundColor: "rgba(0, 0, 0, 0.5)",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              zIndex: 1000,
-            }}
+            className="fixed inset-0 w-screen h-screen bg-black/50 flex justify-center items-center z-[1000]"
           >
             <div
               onClick={(e) => e.stopPropagation()}
-              style={{
-                backgroundColor: "white",
-                padding: "40px",
-                borderRadius: "10px",
-                width: "50%",
-                minWidth: "300px",
-                maxWidth: "600px",
-                position: "relative",
-                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-              }}
+              className="bg-white p-10 rounded-[10px] w-1/2 min-w-[300px] max-w-[600px] relative shadow-md"
             >
               <button
                 onClick={() => setActiveModal(null)}
-                style={{
-                  position: "absolute",
-                  top: "15px",
-                  right: "15px",
-                  background: "transparent",
-                  border: "none",
-                  fontSize: "20px",
-                  cursor: "pointer",
-                  fontWeight: "bold",
-                  color: "#f30404",
-                }}
+                className="absolute top-[15px] right-[15px] bg-transparent border-none text-[20px] cursor-pointer font-bold text-[#f30404]"
               >
                 X
               </button>
-              <h2 style={{ marginTop: 0 }}>{activeModal}</h2>
+              <h2 className="mt-0 text-2xl font-bold mb-4">{activeModal}</h2>
               {activeModal === "Tujuan" ? (
                 <>
-                  <p style={{ textAlign: "justify", fontSize: "18px" }}>
+                  <p className="text-justify text-[18px] mb-4">
                     Melalui media pembelajaran interaktif Detektif AI: Misi
                     Rekrutmen Adil, murid diharapkan dapat:
                   </p>
-                  <ul style={{ fontSize: "18px", lineHeight: "1.6" }}>
+                  <ul className="text-[18px] leading-[1.6] list-disc list-inside">
                     <li>Menganalisis Etika Kecerdasan Artifisial</li>
                     <li>Menerapkan Prinsip Keamanan Data</li>
                     <li>Mengevaluasi Dampak Sosial AI</li>
@@ -298,18 +268,18 @@ function App() {
                   </ul>
                 </>
               ) : activeModal === "Profil" ? (
-                <ul style={{ fontSize: "18px", lineHeight: "1.6" }}>
+                <ul className="text-[18px] leading-[1.6] list-disc list-inside">
                   <li>Muhammad Khaidir, S.Kom</li>
                   <li>Guru Teknik Jaringan Komputer & Telekomunikasi</li>
                   <li>SMK Negeri 1 Amuntai</li>
                 </ul>
               ) : activeModal === "Panduan" ? (
-                <p style={{ textAlign: "justify" }}>
+                <p className="text-justify">
                   Panduan penggunaan elemen literasi dan etika kecerdasan
                   artifisial akan dijelaskan di sini.
                 </p>
               ) : (
-                <p style={{ textAlign: "justify" }}>
+                <p className="text-justify">
                   Konten untuk {activeModal} akan ditampilkan di sini.
                 </p>
               )}
