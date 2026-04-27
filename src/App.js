@@ -7,6 +7,8 @@ function App() {
   const [volume, setVolume] = useState(0.2);
   const [showVolumeSlider, setShowVolumeSlider] = useState(false);
   const [dialogStep, setDialogStep] = useState(0);
+  const [auditorName, setAuditorName] = useState("");
+  const [auditorSchool, setAuditorSchool] = useState("");
   const audioRef = useRef(null);
 
   useEffect(() => {
@@ -91,14 +93,56 @@ function App() {
                 <p className="text-white text-2xl leading-relaxed mb-8">
                   {dialogContent[dialogStep]}
                 </p>
-                <button
-                  onClick={() =>
-                    setDialogStep(dialogStep === 5 ? 0 : dialogStep + 1)
-                  }
-                  className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200"
-                >
-                  {dialogStep === 5 ? "Selesai" : "Selanjutnya"}
-                </button>
+                {dialogStep === 5 ? (
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      setDialogStep(0);
+                    }}
+                    className="flex flex-col gap-4 text-left"
+                  >
+                    <div>
+                      <label className="block text-white/80 text-sm mb-1">
+                        Nama Lengkap Auditor
+                      </label>
+                      <input
+                        type="text"
+                        value={auditorName}
+                        onChange={(e) => setAuditorName(e.target.value)}
+                        autoFocus
+                        required
+                        className="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all placeholder-white/30"
+                        placeholder="Masukkan nama lengkap"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-white/80 text-sm mb-1">
+                        Sekolah Asal
+                      </label>
+                      <input
+                        type="text"
+                        value={auditorSchool}
+                        onChange={(e) => setAuditorSchool(e.target.value)}
+                        required
+                        className="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all placeholder-white/30"
+                        placeholder="Masukkan asal sekolah"
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      className="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200"
+                    >
+                      Mulai Audit
+                    </button>
+                  </form>
+                ) : (
+                  <button
+                    onClick={() => setDialogStep(dialogStep + 1)}
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200"
+                  >
+                    Selanjutnya
+                  </button>
+                )}
               </div>
             </div>
           )}
