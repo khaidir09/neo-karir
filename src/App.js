@@ -18,10 +18,10 @@ function App() {
   const dialogContent = [
     "",
     "Selamat datang di Pusat Kendali Neo-Career. Senang melihatmu bergabung dalam tim Audit Teknologi.",
-    "Sebagai anggota baru, tugasmu adalah memastikan sistem AI kita berjalan secara adil dan etis.",
-    "Kita baru saja menerima laporan adanya kejanggalan dalam sistem rekrutmen terbaru kita.",
-    "Beberapa kandidat merasa AI kita mendiskriminasi mereka berdasarkan data demografis tertentu.",
-    "Misi pertamamu adalah menyelidiki laporan ini. Periksa log sistem dan temukan akar masalahnya. Semoga berhasil!"
+    "Saat ini, ribuan perusahaan menggunakan AI untuk menyeleksi pelamar kerja. Namun, ada laporan bahwa sistem tersebut mulai bertindak tidak adil.",
+    "Algoritma yang salah dapat mendiskriminasi pelamar berbakat hanya karena asal sekolah, tempat tinggal, atau faktor lain yang tidak relevan.",
+    "Tugasmu adalah mengaudit sistem ini. Kamu akan memperbaiki basis data, menyeimbangkan algoritma, dan menjaga privasi para pelamar.",
+    "Integritas rekrutmen ada di tanganmu. Sebelum kita mulai, silakan identifikasi dirimu sebagai Auditor resmi.",
   ];
 
   if (showIntro) {
@@ -92,7 +92,9 @@ function App() {
                   {dialogContent[dialogStep]}
                 </p>
                 <button
-                  onClick={() => setDialogStep(dialogStep === 5 ? 0 : dialogStep + 1)}
+                  onClick={() =>
+                    setDialogStep(dialogStep === 5 ? 0 : dialogStep + 1)
+                  }
                   className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200"
                 >
                   {dialogStep === 5 ? "Selesai" : "Selanjutnya"}
@@ -226,10 +228,10 @@ function App() {
               boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
             }}
             onClick={() => {
-              // Based on user request "Setelah pengguna menekan tombol Mulai, buatkan sistem dialog pembuka", 
-              // we will skip the video for now and trigger dialog directly to address the review comment. 
-              // If the video is still needed, the trigger should probably be AFTER the video, but the prompt says 
-              // "Setelah pengguna menekan tombol Mulai, buatkan sistem dialog pembuka". 
+              // Based on user request "Setelah pengguna menekan tombol Mulai, buatkan sistem dialog pembuka",
+              // we will skip the video for now and trigger dialog directly to address the review comment.
+              // If the video is still needed, the trigger should probably be AFTER the video, but the prompt says
+              // "Setelah pengguna menekan tombol Mulai, buatkan sistem dialog pembuka".
               // Let's directly trigger the dialog.
               setDialogStep(1);
             }}
