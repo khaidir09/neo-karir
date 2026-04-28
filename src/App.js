@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import "./App.css";
 import { useUser } from "./UserContext";
 import AuthScreen from "./AuthScreen";
+import Level1 from "./levels/Level1";
 
 function App() {
   const [showIntro, setShowIntro] = useState(false);
@@ -65,7 +66,9 @@ function App() {
     <>
       <audio ref={audioRef} src="/backsound.mp3" autoPlay loop />
       {view === "auth" ? (
-        <AuthScreen />
+        <AuthScreen onComplete={() => setView("level1")} />
+      ) : view === "level1" ? (
+        <Level1 />
       ) : (
       <div
         style={{
