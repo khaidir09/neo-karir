@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useUser } from './UserContext';
+import React, { useState, useEffect } from "react";
+import { useUser } from "./UserContext";
 
 const AuthScreen = () => {
   const { userName } = useUser();
@@ -8,14 +8,14 @@ const AuthScreen = () => {
   const loadingTexts = [
     `Mengautentikasi Auditor: ${userName}...`,
     "Menghubungkan ke Server Pusat Neo-Career...",
-    "Menganalisis Sistem Rekrutmen DEWA Kreatif..."
+    "Menganalisis Sistem Rekrutmen DEWA Kreatif...",
   ];
 
   useEffect(() => {
     if (loadingTextIndex < loadingTexts.length - 1) {
       const timer = setTimeout(() => {
-        setLoadingTextIndex(prev => prev + 1);
-      }, 2000); // Change text every 2 seconds
+        setLoadingTextIndex((prev) => prev + 1);
+      }, 3000);
       return () => clearTimeout(timer);
     }
   }, [loadingTextIndex, loadingTexts.length]);
@@ -23,16 +23,27 @@ const AuthScreen = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-slate-900 text-white font-sans">
       <div className="flex flex-col items-center justify-center space-y-8 animate-fade-in p-8 bg-slate-800/50 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl">
-        {/* Minimalist Loading Spinner */}
-        <div className="relative w-16 h-16">
-          <div className="absolute inset-0 rounded-full border-t-4 border-blue-500 border-opacity-20 animate-pulse"></div>
-          <div className="absolute inset-0 rounded-full border-t-4 border-blue-500 border-r-4 border-transparent border-b-4 border-transparent border-l-4 border-transparent animate-spin"></div>
+        {/* Spinner yang Diperbaiki */}
+        <div className="relative w-20 h-20">
+          {/* Lingkaran Luar (Static Ring) */}
+          <div className="absolute inset-0 rounded-full border-4 border-blue-500/20"></div>
+
+          {/* Lingkaran Berputar (Active Spinner) */}
+          <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-blue-500 animate-spin"></div>
+
+          {/* Efek Cahaya Tambahan */}
+          {/* <div className="absolute inset-0 rounded-full border-4 border-transparent border-l-blue-400/30 animate-pulse"></div> */}
         </div>
 
-        {/* Sequential Loading Text */}
-        <p className="text-xl text-center text-blue-200 h-8 transition-all duration-500">
-          {loadingTexts[loadingTextIndex]}
-        </p>
+        {/* Teks Loading dengan Animasi Fade */}
+        <div className="h-8">
+          <p
+            key={loadingTextIndex}
+            className="text-xl text-center text-blue-200 animate-fade-in"
+          >
+            {loadingTexts[loadingTextIndex]}
+          </p>
+        </div>
       </div>
     </div>
   );
