@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useUser } from "./UserContext";
 
-const AuthScreen = () => {
+const AuthScreen = ({ onComplete }) => {
   const { userName } = useUser();
   const [loadingTextIndex, setLoadingTextIndex] = useState(0);
 
@@ -17,8 +17,13 @@ const AuthScreen = () => {
         setLoadingTextIndex((prev) => prev + 1);
       }, 3000);
       return () => clearTimeout(timer);
+    } else {
+      const timer = setTimeout(() => {
+        if (onComplete) onComplete();
+      }, 3000);
+      return () => clearTimeout(timer);
     }
-  }, [loadingTextIndex, loadingTexts.length]);
+  }, [loadingTextIndex, loadingTexts.length, onComplete]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-slate-900 text-white font-sans">
