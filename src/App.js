@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import "./App.css";
+import { useUser } from "./UserContext";
+import AuthScreen from "./AuthScreen";
 
 function App() {
   const [showIntro, setShowIntro] = useState(false);
@@ -9,6 +11,8 @@ function App() {
   const [dialogStep, setDialogStep] = useState(0);
   const [auditorName, setAuditorName] = useState("");
   const [auditorSchool, setAuditorSchool] = useState("");
+  const [view, setView] = useState("home");
+  const { setUserName, setUserSchool } = useUser();
   const audioRef = useRef(null);
 
   useEffect(() => {
@@ -60,6 +64,9 @@ function App() {
   return (
     <>
       <audio ref={audioRef} src="/backsound.mp3" autoPlay loop />
+      {view === "auth" ? (
+        <AuthScreen />
+      ) : (
       <div
         style={{
           width: "100vw",
@@ -97,7 +104,9 @@ function App() {
                   <form
                     onSubmit={(e) => {
                       e.preventDefault();
-                      setDialogStep(0);
+                      setUserName(auditorName);
+                      setUserSchool(auditorSchool);
+                      setView("auth");
                     }}
                     className="flex flex-col gap-4 text-left"
                   >
@@ -333,6 +342,7 @@ function App() {
           </div>
         )}
       </div>
+      )}
     </>
   );
 }
